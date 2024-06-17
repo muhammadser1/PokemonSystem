@@ -1,7 +1,6 @@
 from typing import Optional, List
-
 import requests
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException
 from models.mysql_database import get_db
 from models.schema import Pokemon
 
@@ -17,23 +16,26 @@ def get_pokemon_by_id(pokemon_id: int, pokemon_db=Depends(get_db)):
     :return: pokemon data
     """
     pokemon_info = pokemon_db.get_pokemon_by_id(pokemon_id)
-    types = pokemon_db.get_type_of_pokemon(pokemon_id)
-    pokemon={"pokemon_info":pokemon_info,"types":types}
     if not pokemon_info:
-        return []
+        raise HTTPException(status_code=404, detail="No Pokemon found with the given ID")
+
+    types = pokemon_db.get_type_of_pokemon(pokemon_id)
+    pokemon = {"pokemon_info": pokemon_info, "types": types}
     return pokemon
 
-
-@router.get("/name/{pokemon_name}")
-def get_pokemon_by_name(pokemon_name: str, pokemon_db=Depends(get_db)):
-    """
-    retrieve a pokemon by its name
-    :param pokemon_id: the id of pokemon to retrieve
-    :param pokemon_name: Dependency to fetch the database.
-    :return: pokemon data
-    """
-    pokemon = pokemon_db.get_pokemon_by_name(pokemon_name)
-    return pokemon
+#
+# @router.get("/name/{pokemon_name}")
+# def get_pokemon_by_name(pokemon_name: str, pokemon_db=Depends(get_db)):
+#     """
+#     retrieve a pokemon by its name
+#     :param pokemon_id: the id of pokemon to retrieve
+#     :param pokemon_name: Dependency to fetch the database.
+#     :return: pokemon data
+#     """
+#     pokemon = pokemon_db.get_pokemon_by_name(pokemon_name)
+#     if not pokemon:
+#         raise HTTPException(status_code=404, detail="No Pokemon found with the given Name")
+#     return pokemon[0]
 
 
 @router.get("/")
@@ -50,15 +52,24 @@ def get_pokemon_with_filtering(trainer_name: Optional[str] = Query(None), pokemo
 
     if trainer_name:
         pokemons = pokemon_db.get_pokemon_by_trainer(trainer_name)
+        if not pokemons:
+            raise HTTPException(status_code=404, detail="No Pokemon found with the given trainer name")
         return pokemons
 
     if pokemon_type:
         pokemons = pokemon_db.get_pokemon_by_type(pokemon_type)
+        if not pokemons:
+            raise HTTPException(status_code=404, detail="No Pokemon found with the given type")
         return pokemons
 
 
 @router.post("/")
 def add_pokemon(pokemon: Pokemon, pokemon_db=Depends(get_db)):
+
+    pokemon_name = pokemon_db.get_pokemon_by_name(pokemon.name)
+    if pokemon_name:
+        raise HTTPException(status_code=409, detail="Pokemon found in DB")
+
     pokemon_info = [pokemon.id, pokemon.name, pokemon.height, pokemon.weight]
     pokemon_types = pokemon.types
     pokemon_db.add_pokemon(pokemon_info)

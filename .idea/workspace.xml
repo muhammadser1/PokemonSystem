@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bca2174-5c6f-4589-b588-0983d2c73fe6" name="Changes" comment="" />
+    <list default="true" id="8bca2174-5c6f-4589-b588-0983d2c73fe6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon_server/controllers/pokemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon_server/controllers/pokemon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon_server/controllers/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon_server/controllers/trainer.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
