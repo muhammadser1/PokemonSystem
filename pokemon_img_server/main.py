@@ -1,5 +1,4 @@
 import base64
-
 from fastapi import FastAPI, Depends, HTTPException, File, UploadFile
 from constants import pokemonImg
 from schema import Image

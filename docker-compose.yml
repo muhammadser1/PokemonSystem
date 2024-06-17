@@ -11,10 +11,10 @@ services:
       - "8001:8001"
     depends_on:
       - mysql
-#  app3:
-#    build: ./external_api
-#    ports:
-#      - "8002:8002"
+  app3:
+    build: ./external_api
+    ports:
+      - "8002:8002"
   app4:
     build: ./pokemon_img_server
     ports:
