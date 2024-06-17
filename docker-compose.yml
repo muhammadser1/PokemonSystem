@@ -15,12 +15,12 @@ services:
 #    build: ./external_api
 #    ports:
 #      - "8002:8002"
-#  app4:
-#    build: ./pokemon_img_server
-#    ports:
-#      - "8003:8003"
-#    depends_on:
-#      - mongodb
+  app4:
+    build: ./pokemon_img_server
+    ports:
+      - "8003:8003"
+    depends_on:
+      - mongodb
   mysql:
     image: mysql:5.7
     environment:
@@ -31,7 +31,7 @@ services:
     ports:
       - "3306:3306"
 
-#  mongodb:
-#    image: mongo:latest
-#    ports:
-#      - "27017:27017"
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
