@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bca2174-5c6f-4589-b588-0983d2c73fe6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/models/mongo_db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/mongoConfig.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/pokemons_data (1).json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pokemon_img_server/utils/read_json.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/sqlConfig.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external_api/utils/pokemon_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon_img_server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon_img_server/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
