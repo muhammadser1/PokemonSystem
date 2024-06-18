@@ -13,12 +13,16 @@ server = FastAPI()
 
 @server.post("/add_img/")
 def add_data_to_db(img:Image,db=Depends(get_db)):
-    decoded_image = base64.b64decode(img.bytes)
-    db.save_image_to_gridfs(img.name, decoded_image)
+    try:
+        decoded_image = base64.b64decode(img.bytes)
+        db.save_image_to_gridfs(img.name, decoded_image)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Unexpected error occurred") from e
     return {"message": "Image saved to database"}
 
 @server.get("/get_img")
 def get_image_from_gridfs(pokemon_name: str, db=Depends(get_db)):
+    print("db")
     image_bytes = db.get_image_from_gridfs_by_filename(pokemon_name)
     if image_bytes is None:
         raise HTTPException(status_code=404, detail="No image found for the given Pokemon")

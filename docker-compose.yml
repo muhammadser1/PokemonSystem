@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-#  app:
-#    build: ./gateway
-#    ports:
-#      - "8000:8000"
+  app:
+    build: ./gateway
+    ports:
+      - "8000:8000"
   app2:
     build: ./pokemon_server
     ports:
