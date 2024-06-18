@@ -1,13 +1,16 @@
 import requests
-from fastapi import APIRouter, Query, HTTPException
+from fastapi import APIRouter, Query, HTTPException,Request
 from class_gateway import ClassGateway
+from redis_class import get_redis
 
 router = APIRouter(prefix='/trainers', tags=['Trainers'])
 gateway_instance = ClassGateway()
+redis_client = get_redis()
 
 
 @router.get("/pokemon/{pokemon_name}")
-def get_trainers_by_pokemon_name(pokemon_name: str):
+def get_trainers_by_pokemon_name(request: Request,pokemon_name: str):
+    # full_path = request.url.path
     """
     Retrieves a list of trainers who own a Pokemon with the given name.
 
@@ -18,6 +21,7 @@ def get_trainers_by_pokemon_name(pokemon_name: str):
     if not trainers:
         raise HTTPException(status_code=404, detail=f"No trainers found for Pokemon with name '{pokemon_name}'")
 
+    # redis_client.set_(full_path, trainers, 10)
     return trainers
 
 

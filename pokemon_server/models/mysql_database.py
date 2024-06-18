@@ -68,7 +68,9 @@ class Mysql_database(Database):
 
     def get_trainers_by_pokemon_name(self, pokemon: str):
         query = f"SELECT t.name FROM trainers t join teams on  t.name = teams.trainer_name join pokemons p on p.id = teams.pokemon_id  where p.name = '{pokemon}'"
-        return self.__execute_query(query)
+        trainers=self.__execute_query(query)
+        trainers = [list(inner_list) for inner_list in trainers]
+        return trainers
 
     ####################################################################################################################
     """ Operations"""
