@@ -6,6 +6,7 @@ This project is a Pokemon System API designed to handle various operations relat
 2.  **external_api**: Fetches data and images from an external Pokémon API.
 3.  **pokemon_img_server**: Manages Pokemon images, storing and retrieving them from MongoDB.
 4.  **pokemon_server**: Handles core features using MySQL, such as adding Pokemon species, managing trainers, and evolving Pokemon.
+5.  Redis Cache: Provides caching for frequently accessed data to improve performance and reduce load on the database.
 
 ## Getting Started
 
