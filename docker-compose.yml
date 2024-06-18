@@ -5,6 +5,8 @@ services:
     build: ./gateway
     ports:
       - "8000:8000"
+    depends_on:
+      - redis
   app2:
     build: ./pokemon_server
     ports:
@@ -35,3 +37,7 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
