@@ -5,12 +5,11 @@ from fastapi import APIRouter, Query, HTTPException,Request
 from class_gateway import ClassGateway
 from fastapi.responses import StreamingResponse
 import io
-from redis_class import get_redis
+from redis_manager import get_redis
 
 router = APIRouter(prefix='/pokemons', tags=['Pokemons'])
 gateway_instance = ClassGateway()
 redis_client = get_redis()
-
 #
 #
 # @router.post("/{pokemon_id}2")
@@ -51,7 +50,7 @@ def get_pokemon_by_id(request: Request,pokemon_id: int):
 
     data_json = {"pokemon": pokemon, "img_base64": img_base64}
 
-    redis_client.set_(path, data_json,10)
+    redis_client.set_value(path, data_json)
     return data_json
 
 

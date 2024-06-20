@@ -14,14 +14,13 @@ class RedisClient:
         self.db = db
         self.redis_client = redis.Redis(host=self.host, port=self.port, db=self.db, decode_responses=True)
 
-    def set_(self, key: str, value: Any, ttl: int = 30) -> None:
+    def set_value(self, key: str, value: Any, ttl: int = 30) -> None:
         """ Set a key-value pair in Redis with optional TTL """
         self.redis_client.set(key, json.dumps(value))
         if ttl:
             self.redis_client.expire(key, ttl)
 
-    def get_(self, key: str) -> Optional[Any]:
-
+    def get_value(self, key: str) -> Optional[Any]:
         """ Get a value from Redis by key """
         data = self.redis_client.get(key)
         if data:

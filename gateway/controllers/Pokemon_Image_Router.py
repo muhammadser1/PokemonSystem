@@ -7,7 +7,7 @@ from fastapi import APIRouter, Query, HTTPException,Request
 from class_gateway import ClassGateway
 from fastapi.responses import StreamingResponse
 import io
-from redis_class import get_redis
+from redis_manager import get_redis
 
 router = APIRouter(prefix='/pokemon/images', tags=['Pokemon Images'])
 gateway_instance = ClassGateway()
@@ -21,5 +21,5 @@ def get_pokemon_image(request: Request,pokemon_name: str):
     if img_bytes_response.status_code ==404:
         raise HTTPException(status_code=404, detail="No image found for the given Pokemon")
     encoded_data = base64.b64encode(img_bytes_response.content).decode('utf-8')
-    redis_client.set_(full_path, encoded_data,10)
+    redis_client.set_value(full_path, encoded_data)
     return StreamingResponse(io.BytesIO(img_bytes_response.content), media_type="image/png")
